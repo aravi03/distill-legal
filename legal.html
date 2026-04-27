@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal — Distill</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f6f6f6;
+      --border: #e5e5e5;
+      --text-primary: #111111;
+      --text-secondary: #555555;
+      --text-tertiary: #aaaaaa;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Progress bar ── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      background: var(--text-primary);
+      width: 0%;
+      z-index: 999;
+      transition: width 0.1s linear;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .logo-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      background: var(--text-primary);
+      border-radius: 50%;
+      margin-left: 2px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    .tab-nav { display: flex; gap: 4px; }
+
+    .tab-btn {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-secondary);
+      transition: all 0.15s ease;
+    }
+
+    .tab-btn:hover { background: var(--surface); color: var(--text-primary); }
+
+    .tab-btn.active {
+      background: var(--text-primary);
+      color: #fff;
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 52px 0 36px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 44px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .hero-meta {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Docs ── */
+    .doc { display: none; }
+    .doc.active { display: block; }
+
+    /* ── Sections ── */
+    .section-block {
+      padding-bottom: 36px;
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-block:last-child { border-bottom: none; }
+
+    .section-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 6px;
+    }
+
+    .section-block h2 {
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 14px;
+    }
+
+    .section-block h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 22px 0 8px;
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Lists ── */
+    ul, ol {
+      padding-left: 0;
+      margin: 8px 0 12px;
+      list-style: none;
+    }
+
+    li {
+      font-size: 15px;
+      color: var(--text-secondary);
+      padding: 4px 0 4px 18px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 13px;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--text-tertiary);
+    }
+
+    /* ── Callout ── */
+    .callout {
+      background: var(--surface);
+      border-left: 3px solid var(--text-primary);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 14px 0;
+    }
+
+    .callout p { font-size: 14px; margin: 0; }
+
+    /* ── Contact block ── */
+    .contact-block {
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-top: 14px;
+    }
+
+    .contact-block p { font-size: 14px; line-height: 1.9; margin: 0; }
+
+    a { color: var(--text-primary); text-underline-offset: 3px; }
+    a:hover { opacity: 0.55; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 28px 24px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-inner p { font-size: 13px; color: var(--text-tertiary); margin: 0; }
+
+    .footer-links { display: flex; gap: 18px; }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* ── Mobile ── */
+    @media (max-width: 560px) {
+      .header-inner { padding: 0 16px; }
+      main { padding: 0 16px 60px; }
+      .hero { padding: 36px 0 24px; }
+      .tab-btn { font-size: 12px; padding: 5px 10px; }
+      footer { padding: 22px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header>
+  <div class="header-inner">
+    <a href="https://distillit.app" class="logo">Distill<span class="logo-dot"></span></a>
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('privacy', this)">Privacy Policy</button>
+      <button class="tab-btn" onclick="switchTab('terms', this)">Terms &amp; Conditions</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ── PRIVACY POLICY ── -->
+  <div id="privacy" class="doc active">
+
+    <div class="hero">
+      <p class="hero-eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <div class="hero-meta">
+        <span>Effective: [INSERT DATE]</span>
+        <span>Last updated: [INSERT DATE]</span>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">01</p>
+      <h2>Introduction</h2>
+      <p>Distill is committed to protecting your privacy. This policy explains what information we collect, how we use it, and what rights you have. By using Distill, you agree to the terms described here.</p>
+      <p>Questions? Reach us at <a href="mailto:support@distillit.app">support@distillit.app</a>.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">02</p>
+      <h2>Information We Collect</h2>
+
+      <h3>Information you provide</h3>
+      <ul>
+        <li><strong>Name</strong> — collected during sign-up</li>
+        <li><strong>Email address</strong> — collected during sign-up or authentication</li>
+      </ul>
+
+      <h3>Information collected automatically</h3>
+      <ul>
+        <li><strong>Device identifiers</strong> — such as device ID and push notification tokens, used for service delivery and analytics</li>
+        <li><strong>Usage data</strong> — including content interactions, session activity, and in-app behaviour</li>
+        <li><strong>Diagnostic data</strong> — crash logs and error reports to help us maintain the app</li>
+      </ul>
+
+      <h3>Payment information</h3>
+      <p>We do not collect or store payment details. Purchases are processed by the Apple App Store or Google Play Store. We only receive non-sensitive information such as subscription status.</p>
+
+      <h3>What we do not collect</h3>
+      <ul>
+        <li>Location data</li>
+        <li>Camera or microphone data</li>
+        <li>User-uploaded content</li>
+      </ul>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">03</p>
+      <h2>How We Use Your Information</h2>
+      <ul>
+        <li>Provide and personalise the Distill experience</li>
+        <li>Manage your account and subscription</li>
+        <li>Monitor and improve app performance</li>
+        <li>Communicate with you about your account</li>
+        <li>Comply with legal obligations</li>
+      </ul>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">04</p>
+      <h2>Third-Party Services</h2>
+      <p>We work with third-party providers for analytics, attribution, crash monitoring, and payment processing. These providers may receive certain data as described in this policy. We do not sell your personal data to any third party.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">05</p>
+      <h2>Data Storage and Security</h2>
+      <p>We take reasonable measures to protect your data from unauthorised access or misuse. No system is completely secure and we cannot guarantee absolute security.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">06</p>
+      <h2>Children's Privacy</h2>
+      <p>Distill is intended for users aged 13 and above. We do not knowingly collect data from children under 13. If you believe a child under 13 has created an account, contact us at <a href="mailto:support@distillit.app">support@distillit.app</a> and we will delete it promptly.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">07</p>
+      <h2>Your Rights</h2>
+      <p>You may request access to, correction of, or deletion of your personal data at any time by contacting <a href="mailto:support@distillit.app">support@distillit.app</a>.</p>
+      <div class="callout">
+        <p><strong>Account deletion:</strong> Email us and we will delete your personal data within 7 days of confirmation.</p>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">08</p>
+      <h2>Data Retention</h2>
+      <p>We retain your data for as long as your account is active. Upon account deletion, personal data is removed within 7 days. Anonymised or aggregated data may be retained for longer periods.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">09</p>
+      <h2>International Data Transfers</h2>
+      <p>Distill is available globally. Your data may be processed in countries other than your own. By using Distill, you consent to this transfer.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">10</p>
+      <h2>Communications</h2>
+      <p>We may communicate with you about your account, subscription, or the app. Where applicable, you will have the option to manage your communication preferences.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">11</p>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this policy from time to time. The "Last Updated" date at the top reflects any changes. Continued use of Distill after changes are posted constitutes acceptance.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">12</p>
+      <h2>Contact</h2>
+      <div class="contact-block">
+        <p>
+          <strong>Distill</strong><br>
+          <a href="mailto:support@distillit.app">support@distillit.app</a><br>
+          <a href="https://distillit.app" target="_blank" rel="noopener">distillit.app</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── TERMS & CONDITIONS ── -->
+  <div id="terms" class="doc">
+
+    <div class="hero">
+      <p class="hero-eyebrow">Legal</p>
+      <h1>Terms &amp; Conditions</h1>
+      <div class="hero-meta">
+        <span>Effective: [INSERT DATE]</span>
+        <span>Last updated: [INSERT DATE]</span>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">01</p>
+      <h2>Acceptance of Terms</h2>
+      <p>By downloading, installing, or using Distill, you agree to these Terms and Conditions ("Terms"). If you do not agree, do not use the app.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">02</p>
+      <h2>Eligibility</h2>
+      <p>You must be at least 13 years of age to use Distill. If you are between 13 and 18, you confirm that you have your parent or guardian's permission.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">03</p>
+      <h2>Account</h2>
+      <p>You may sign in using Google or Apple. You are responsible for all activity under your account. Notify us immediately of any unauthorised access at <a href="mailto:support@distillit.app">support@distillit.app</a>.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">04</p>
+      <h2>Subscription and Payment</h2>
+      <p>Distill is a subscription-based app with a free trial. Pricing, billing terms, and available plans are displayed in the App Store or Google Play Store at the time of purchase.</p>
+      <p>Subscriptions auto-renew unless cancelled at least 24 hours before the renewal date. Cancellation can be managed through your App Store or Google Play account settings.</p>
+      <p><strong>Refunds</strong> are handled by Apple or Google in accordance with their respective policies. We do not process refunds directly.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">05</p>
+      <h2>Acceptable Use</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Use the app for any unlawful purpose</li>
+        <li>Attempt to reverse engineer or extract the source code of the app</li>
+        <li>Attempt to gain unauthorised access to our systems</li>
+        <li>Copy, reproduce, or redistribute content from the app without our permission</li>
+        <li>Use automated tools to access any part of the app</li>
+      </ul>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">06</p>
+      <h2>Intellectual Property</h2>
+      <p>All content in Distill — including summaries, audio, images, design, and code — is owned by or licensed to Distill. You are granted a limited, personal, non-transferable licence to use the app for personal purposes only. No intellectual property rights are transferred to you.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">07</p>
+      <h2>Content</h2>
+      <p>Content in Distill is produced for informational and educational purposes only. It is not a substitute for original works and does not represent the views of original authors or publishers.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">08</p>
+      <h2>Disclaimer of Warranties</h2>
+      <p>The app is provided "as is" and "as available" without warranties of any kind. We do not warrant that the app will be uninterrupted, error-free, or that content will be accurate or complete.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">09</p>
+      <h2>Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, Distill shall not be liable for indirect, incidental, or consequential damages arising from your use of the app. Our total liability shall not exceed the amount you paid us in the three months preceding the claim.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">10</p>
+      <h2>Termination</h2>
+      <p>We may suspend or terminate your access at any time for violation of these Terms or at our discretion. Your right to use the app ceases immediately upon termination.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">11</p>
+      <h2>Changes</h2>
+      <p>We may update the app or these Terms at any time. Continued use after changes are posted constitutes acceptance.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">12</p>
+      <h2>Governing Law</h2>
+      <p>These Terms are governed by the laws of India. Disputes shall be subject to the exclusive jurisdiction of the courts in Chennai, Tamil Nadu, India.</p>
+    </div>
+
+    <div class="section-block">
+      <p class="section-num">13</p>
+      <h2>Contact</h2>
+      <div class="contact-block">
+        <p>
+          <strong>Distill</strong><br>
+          <a href="mailto:support@distillit.app">support@distillit.app</a><br>
+          <a href="https://distillit.app" target="_blank" rel="noopener">distillit.app</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>© 2025 Distill. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#" onclick="switchTab('privacy', document.querySelectorAll('.tab-btn')[0]); window.scrollTo(0,0); return false;">Privacy</a>
+      <a href="#" onclick="switchTab('terms', document.querySelectorAll('.tab-btn')[1]); window.scrollTo(0,0); return false;">Terms</a>
+      <a href="mailto:support@distillit.app">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function switchTab(docId, btn) {
+    document.querySelectorAll('.doc').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(docId).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    document.getElementById('progress-bar').style.width = (scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0) + '%';
+  });
+</script>
+
+</body>
+</html>
