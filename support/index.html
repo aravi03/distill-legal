@@ -4,267 +4,83 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Support - Distill</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --page-bg: #fff;
-      --text-primary: #111;
-      --text-secondary: #555;
-      --text-tertiary: #aaa;
-      --border: #e5e5e5;
-      --surface: #f6f6f6;
-    }
-
-    body {
-      font-family: 'Outfit', system-ui, sans-serif;
-      background: var(--page-bg);
-      color: var(--text-primary);
-      font-size: 15px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── Nav ── */
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 40px;
-      border-bottom: 1px solid var(--border);
-    }
-    nav a.logo {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text-primary);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-    }
-    nav span.section-label {
-      font-size: 13px;
-      color: var(--text-tertiary);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    /* ── Page layout ── */
-    main {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 64px 40px 80px;
-    }
-
-    h1 {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 48px;
-      line-height: 1.2;
-    }
-
-    /* ── Sections ── */
-    .section {
-      display: grid;
-      grid-template-columns: 32px 1fr;
-      gap: 0 24px;
-      margin-bottom: 40px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--border);
-    }
-    .section:last-of-type {
-      border-bottom: none;
-    }
-
-    .section-num {
-      font-size: 12px;
-      color: var(--text-tertiary);
-      padding-top: 4px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .section-body h2 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
-    }
-
-    .section-body p {
-      color: var(--text-secondary);
-      margin-bottom: 10px;
-    }
-    .section-body p:last-child { margin-bottom: 0; }
-
-    .section-body ul {
-      list-style: none;
-      padding: 0;
-      color: var(--text-secondary);
-    }
-    .section-body ul li {
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      gap: 12px;
-    }
-    .section-body ul li:last-child { border-bottom: none; }
-    .section-body ul li .faq-q {
-      font-weight: 500;
-      color: var(--text-primary);
-      display: block;
-      margin-bottom: 4px;
-    }
-    .section-body ul li .faq-a {
-      color: var(--text-secondary);
-      display: block;
-    }
-
-    .faq-item {
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-item .q {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 6px;
-    }
-    .faq-item .a {
-      font-size: 14px;
-      color: var(--text-secondary);
-    }
-    .faq-item .a a {
-      color: var(--text-primary);
-    }
-
-    /* ── Contact card ── */
-    .contact-card {
-      background: var(--surface);
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin-top: 8px;
-    }
-    .contact-card p {
-      margin-bottom: 0 !important;
-    }
-    .contact-card a {
-      color: var(--text-primary);
-      font-weight: 500;
-    }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    footer span {
-      font-size: 13px;
-      color: var(--text-tertiary);
-    }
-    footer nav {
-      border: none;
-      padding: 0;
-      gap: 20px;
-      display: flex;
-    }
-    footer nav a {
-      font-size: 13px;
-      color: var(--text-tertiary);
-      text-decoration: none;
-    }
-    footer nav a:hover { color: var(--text-primary); }
-
-    @media (max-width: 600px) {
-      nav { padding: 16px 20px; }
-      main { padding: 40px 20px 60px; }
-      footer { padding: 20px; flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
 
-  <nav>
-    <a class="logo" href="https://distillit.app">Distill</a>
-    <span class="section-label">Support</span>
-  </nav>
+<header>
+  <div class="header-inner">
+    <a href="https://distillit.app" class="logo">Distill<span class="logo-dot"></span></a>
+  </div>
+</header>
 
-  <main>
+<main>
+  <div class="hero">
+    <p class="hero-eyebrow">Support</p>
     <h1>Support</h1>
-
-    <div class="section">
-      <span class="section-num">01</span>
-      <div class="section-body">
-        <h2>Getting Started</h2>
-        <p>Distill turns bestselling books into short audio clips you can scroll through. Download the app, create a free account, and start learning right away!</p>
-        <p>A subscription is required to access the app which can be purchased at any time. </p>
-      </div>
+    <div class="hero-meta">
+      <span>We're here to help</span>
     </div>
+  </div>
 
-    <div class="section">
-      <span class="section-num">02</span>
-      <div class="section-body">
-        <h2>Subscription & Billing</h2>
+  <div class="section-block">
+    <p class="section-num">01</p>
+    <h2>Getting Started</h2>
+    <p>Distill turns bestselling books into short audio clips you can scroll through. Download the app, create a free account, and start learning right away.</p>
+    <p>A subscription is required to access the app and can be purchased at any time.</p>
+  </div>
 
-        <div class="faq-item">
-          <div class="q">How do I cancel my subscription?</div>
-          <div class="a">On iPhone: go to Settings → Apple ID → Subscriptions → Distill → Cancel. On Android: go to Google Play → Profile → Payments & subscriptions → Subscriptions → Distill → Cancel.</div>
-        </div>
+  <div class="section-block">
+    <p class="section-num">02</p>
+    <h2>Subscription &amp; Billing</h2>
 
-        <div class="faq-item">
-          <div class="q">How do I restore a previous purchase?</div>
-          <div class="a">Open Distill, go to Settings inside the "Me" tab, and tap <strong>Restore Purchases</strong>. Make sure you're signed in with the same Apple ID or Google account used for the original purchase.</div>
-        </div>
+    <h3>How do I cancel my subscription?</h3>
+    <p>On iPhone: go to Settings, Apple ID, Subscriptions, Distill, then Cancel. On Android: go to Google Play, Profile, Payments &amp; subscriptions, Subscriptions, Distill, then Cancel.</p>
 
-        <div class="faq-item">
-          <div class="q">I was charged but can't access content. What do I do?</div>
-          <div class="a">Try restoring your purchase first (see above). If the issue persists, email us at <a href="mailto:support@distillit.app">support@distillit.app</a> with your order details.</div>
-        </div>
-      </div>
+    <h3>How do I restore a previous purchase?</h3>
+    <p>Open Distill, go to Settings inside the "Me" tab, and tap <strong>Restore Purchases</strong>. Make sure you're signed in with the same Apple ID or Google account used for the original purchase.</p>
+
+    <h3>I was charged but can't access content. What do I do?</h3>
+    <p>Try restoring your purchase first. If the issue persists, email us at <a href="mailto:support@distillit.app">support@distillit.app</a> with your order details.</p>
+  </div>
+
+  <div class="section-block">
+    <p class="section-num">03</p>
+    <h2>Account</h2>
+
+    <h3>How do I delete my account?</h3>
+    <p>Email us at <a href="mailto:support@distillit.app">support@distillit.app</a> with the subject "Delete my account". We'll delete your personal data within 7 days of confirmation.</p>
+
+    <h3>I can't sign in. What should I do?</h3>
+    <p>Make sure you're using the same sign-in method, Apple or Google, that you used when you first created your account. If the issue continues, contact us and we'll help.</p>
+  </div>
+
+  <div class="section-block">
+    <p class="section-num">04</p>
+    <h2>Contact Us</h2>
+    <p>Can't find what you're looking for? We're happy to help.</p>
+    <div class="contact-block">
+      <p>Email us at <a href="mailto:support@distillit.app">support@distillit.app</a> and we'll get back to you as soon as possible.</p>
     </div>
+  </div>
+</main>
 
-    <div class="section">
-      <span class="section-num">03</span>
-      <div class="section-body">
-        <h2>Account</h2>
-
-        <div class="faq-item">
-          <div class="q">How do I delete my account?</div>
-          <div class="a">Email us at <a href="mailto:support@distillit.app">support@distillit.app</a> with the subject "Delete my account". We'll delete your personal data within 7 days of confirmation.</div>
-        </div>
-
-        <div class="faq-item">
-          <div class="q">I can't sign in. What should I do?</div>
-          <div class="a">Make sure you're using the same sign-in method (Apple or Google) you used when you first created your account. If the issue continues, contact us and we'll help.</div>
-        </div>
-      </div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">
+      <p>&copy; 2026 Better Tomorrow. All rights reserved.</p>
+      <p>Distill is operated by Better Tomorrow</p>
     </div>
-
-    <div class="section">
-      <span class="section-num">04</span>
-      <div class="section-body">
-        <h2>Contact Us</h2>
-        <p>Can't find what you're looking for? We're happy to help.</p>
-        <div class="contact-card">
-          <p>Email us at <a href="mailto:support@distillit.app">support@distillit.app</a> and we'll get back to you as soon as possible.</p>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <footer>
-    <span>© 2026 Distill. All rights reserved.</span>
-    <nav>
+    <div class="footer-links">
       <a href="https://distillit.app/legal/privacy/">Privacy</a>
       <a href="https://distillit.app/legal/terms/">Terms</a>
       <a href="mailto:support@distillit.app">Contact</a>
-    </nav>
-  </footer>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

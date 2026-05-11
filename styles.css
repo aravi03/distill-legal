@@ -206,6 +206,12 @@ footer {
   margin: 0;
 }
 
+.footer-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .footer-links { display: flex; gap: 18px; }
 
 .footer-links a {
